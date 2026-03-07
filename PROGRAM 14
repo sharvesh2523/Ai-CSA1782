@@ -1,0 +1,12 @@
+import math
+def ent(d):
+    from collections import Counter
+    c=Counter([x[-1] for x in d])
+    return -sum((v/len(d))*math.log2(v/len(d)) for v in c.values())
+
+def gain(d,i):
+    vals=set(x[i] for x in d)
+    return ent(d)-sum(len([x for x in d if x[i]==v])/len(d)*ent([x for x in d if x[i]==v]) for v in vals)
+
+data=[['S','H','No'],['S','C','Yes'],['R','M','Yes'],['R','C','Yes']]
+print(max(range(len(data[0])-1),key=lambda i:gain(data,i)))
