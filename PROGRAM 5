@@ -1,0 +1,17 @@
+def vacuum(state):
+    location, left, right = state
+    if location == 'A':
+        if left == 'Dirty':
+            left = 'Clean'
+            print("Cleaned A")
+        location = 'B'
+    else:
+        if right == 'Dirty':
+            right = 'Clean'
+            print("Cleaned B")
+        location = 'A'
+    return (location, left, right)
+state = ('A', 'Dirty', 'Dirty')
+for _ in range(4):
+    state = vacuum(state)
+    print(state)
