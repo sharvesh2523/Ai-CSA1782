@@ -1,0 +1,24 @@
+from collections import deque
+def is_valid(m, c):
+    return (m == 0 or m >= c)
+def solve():
+    visited = set()
+    queue = deque([(3,3,1)])
+    while queue:
+        m, c, boat = queue.popleft()
+        if (m,c,boat) in visited:
+            continue
+        visited.add((m,c,boat))
+        print(m,c,boat)
+        if m == 0 and c == 0:
+            print("Solved")
+            return
+        moves = [(1,0),(2,0),(0,1),(0,2),(1,1)]
+        for dm, dc in moves:
+            if boat == 1:
+                nm, nc = m-dm, c-dc
+            else:
+                nm, nc = m+dm, c+dc
+            if 0 <= nm <=3 and 0 <= nc <=3 and is_valid(nm,nc) and is_valid(3-nm,3-nc):
+                queue.append((nm,nc,1-boat))
+solve()
