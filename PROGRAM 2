@@ -1,0 +1,18 @@
+def water_jug(x, y, target):
+    visited = set()
+    queue = [(0,0)]
+    while queue:
+        a, b = queue.pop(0)
+        if (a, b) in visited:
+            continue
+        visited.add((a,b))
+        print(a, b)
+        if a == target or b == target:
+            print("Target reached")
+            return
+        queue.extend([
+            (x, b), (a, y), (0, b), (a, 0),
+            (max(0, a-(y-b)), min(y, b+a)),
+            (min(x, a+b), max(0, b-(x-a)))
+        ])
+water_jug(4, 3, 2)
