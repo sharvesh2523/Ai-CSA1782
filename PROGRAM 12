@@ -1,0 +1,14 @@
+def minimax(b,maxp):
+    win=[(0,1,2),(3,4,5),(6,7,8),(0,3,6),(1,4,7),(2,5,8),(0,4,8),(2,4,6)]
+    for a,c,d in win:
+        if b[a]==b[c]==b[d]!=' ': return 1 if b[a]=='O' else -1
+    if ' ' not in b: return 0
+    
+    best=-2 if maxp else 2
+    for i in range(9):
+        if b[i]==' ':
+            b[i]='O' if maxp else 'X'
+            val=minimax(b,not maxp)
+            b[i]=' '
+            best=max(best,val) if maxp else min(best,val)
+    return best
