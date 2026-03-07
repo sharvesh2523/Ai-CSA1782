@@ -1,0 +1,7 @@
+def dfs(node, visited=set()):
+    if node not in visited:
+        print(node)
+        visited.add(node)
+        for neighbor in graph[node]:
+            dfs(neighbor, visited)
+dfs('A')
